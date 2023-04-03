@@ -20,16 +20,24 @@ cleanup() {
     rm -rf $CERESDB_DIR
 }
 
+# Cleanup the old data.
 cleanup
+
 # Run the tsbs
+if [ ! -d ceresdb ]; then
+    git clone https://github.com/ShiKaiWi/ceresdb.git
+fi
+
 cd ceresdb
-make run-tsbs
+git checkout refactor-tsbs-running
+git pull
+make tsbs
 cd $CURR_DIR
 
 # Upload the benchmark results
 git checkout main
 git pull
-cp ${RESULT_FILE} ./records/
+cp -f ${RESULT_FILE} ./records/
 git add ./records
 git commit -m "feat: upload benchmark result of $(date +%Y-%m-%d)"
 git push

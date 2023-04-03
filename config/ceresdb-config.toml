@@ -14,6 +14,9 @@ dir = "/tmp/ceresdbbench"
 type = "Local"
 data_dir = "/tmp/ceresdbbench"
 
+[analytic.compaction_config]
+max_ongoing_tasks = 0
+
 [analytic.wal]
 type = "RocksDB"
-data_dir = "/tmp/ceresdbdbbench"
+data_dir = "/tmp/ceresdbbench"
