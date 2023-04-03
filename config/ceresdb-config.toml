@@ -1,0 +1,19 @@
+[server]
+bind_addr = "0.0.0.0"
+http_port = 35140
+grpc_port = 38131
+mysql_port = 33107
+
+[logger]
+level = "info"
+
+[tracing]
+dir = "/tmp/ceresdbbench"
+
+[analytic.storage.object_store]
+type = "Local"
+data_dir = "/tmp/ceresdbbench"
+
+[analytic.wal]
+type = "RocksDB"
+data_dir = "/tmp/ceresdbdbbench"
