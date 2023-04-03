@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# Run this script on the root directory of this repo.
+set -x
+
+# Switch to the directory of this script.
+cd "$(dirname "$0")"
+
 CURR_DIR=$(pwd)
 DATA_DIR="${CURR_DIR}/data"
 # The ceresdb data directory is determined by the config file: ./config/ceresdb-config.toml.
@@ -12,8 +16,10 @@ export LOG_DIR="${DATA_DIR}/log"
 export CERESDB_CONFIG_FILE="${CURR_DIR}/config/ceresdb-config.toml"
 export CERESDB_ADDR="127.0.0.1:38131"
 
-
-set -x
+# Run the tsbs
+if [ ! -d ceresdb ]; then
+    git clone https://github.com/ShiKaiWi/ceresdb.git
+fi
 
 trap cleanup EXIT
 cleanup() {
@@ -23,16 +29,23 @@ cleanup() {
 # Cleanup the old data.
 cleanup
 
-# Run the tsbs
-if [ ! -d ceresdb ]; then
-    git clone https://github.com/ShiKaiWi/ceresdb.git
-fi
-
 cd ceresdb
+# TODO: change the branch to main after the refactor-tsbs-running branch is merged.
 git checkout refactor-tsbs-running
 git pull
+CERESDB_COMMIT=$(git rev-parse HEAD)
 make tsbs
 cd $CURR_DIR
+
+# Append the server informatin to the result file.
+echo "# ServerInfo" >> ${RESULT_FILE}
+echo "ceresdb version: $CERESDB_COMMIT" >> ${RESULT_FILE}
+echo "benchmark version: $(git rev-parse HEAD)" >> ${RESULT_FILE}
+echo "create time: $(date +%Y-%m-%d\ %H:%M:%S\ %z)" >> ${RESULT_FILE}
+echo "cpu stats:" >> ${RESULT_FILE}
+echo '```plaintext' >> ${RESULT_FILE}
+echo "$(lscpu)" >> ${RESULT_FILE}
+echo '```' >> ${RESULT_FILE}
 
 # Upload the benchmark results
 git checkout main
