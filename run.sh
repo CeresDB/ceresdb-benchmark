@@ -39,10 +39,10 @@ cd $CURR_DIR
 
 # Append the server informatin to the result file.
 echo "# ServerInfo" >> ${RESULT_FILE}
-echo "ceresdb version: $CERESDB_COMMIT" >> ${RESULT_FILE}
-echo "benchmark version: $(git rev-parse HEAD)" >> ${RESULT_FILE}
-echo "create time: $(date +%Y-%m-%d\ %H:%M:%S\ %z)" >> ${RESULT_FILE}
-echo "cpu stats:" >> ${RESULT_FILE}
+echo "- ceresdb version: $CERESDB_COMMIT" >> ${RESULT_FILE}
+echo "- benchmark version: $(git rev-parse HEAD)" >> ${RESULT_FILE}
+echo "- create time: $(date +%Y-%m-%d\ %H:%M:%S\ %z)" >> ${RESULT_FILE}
+echo "- cpu stats:" >> ${RESULT_FILE}
 echo '```plaintext' >> ${RESULT_FILE}
 echo "$(lscpu)" >> ${RESULT_FILE}
 echo '```' >> ${RESULT_FILE}
