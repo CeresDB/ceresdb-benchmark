@@ -47,7 +47,7 @@ echo "$(lscpu)" >> ${RESULT_FILE}
 echo '```' >> ${RESULT_FILE}
 
 # Upload the benchmark results
-if [ -z "${DISABLE_UPLOAD}" ]; then
+if [ ! -z "${DISABLE_UPLOAD}" ]; then
     echo 'Upload is disabled'
     exit 0
 fi
