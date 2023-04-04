@@ -47,6 +47,11 @@ echo "$(lscpu)" >> ${RESULT_FILE}
 echo '```' >> ${RESULT_FILE}
 
 # Upload the benchmark results
+if [ -z "${DISABLE_UPLOAD}" ]; then
+    echo 'Upload is disabled'
+    exit 0
+fi
+
 git checkout main
 git pull
 cp -f ${RESULT_FILE} ./records/
