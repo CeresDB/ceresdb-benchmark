@@ -18,7 +18,7 @@ export CERESDB_ADDR="127.0.0.1:38131"
 
 # Run the tsbs
 if [ ! -d ceresdb ]; then
-    git clone https://github.com/ShiKaiWi/ceresdb.git
+    git clone https://github.com/CeresDB/ceresdb.git
 fi
 
 trap cleanup EXIT
@@ -30,8 +30,7 @@ cleanup() {
 cleanup
 
 cd ceresdb
-# TODO: change the branch to main after the refactor-tsbs-running branch is merged.
-git checkout refactor-tsbs-running
+git checkout main
 git pull
 CERESDB_COMMIT=$(git rev-parse HEAD)
 make tsbs
