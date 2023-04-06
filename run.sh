@@ -2,6 +2,8 @@
 
 set -x
 
+# Ensure the rust toolchain can be found in crontab task
+source ~/.bashrc
 # Switch to the directory of this script.
 cd "$(dirname "$0")"
 
