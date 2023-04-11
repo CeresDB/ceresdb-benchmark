@@ -4,19 +4,23 @@ http_port = 35140
 grpc_port = 38131
 mysql_port = 33107
 
+[runtime]
+compact_thread_num = 1
+default_thread_num = 4
+
 [logger]
 level = "info"
 
 [tracing]
-dir = "/tmp/ceresdbbench"
+dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
 
 [analytic.storage.object_store]
 type = "Local"
-data_dir = "/tmp/ceresdbbench"
+data_dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
 
 [analytic.compaction_config]
-max_ongoing_tasks = 0
+max_ongoing_tasks = 8
 
 [analytic.wal]
 type = "RocksDB"
-data_dir = "/tmp/ceresdbbench"
+data_dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
