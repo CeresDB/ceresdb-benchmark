@@ -12,7 +12,6 @@ default_thread_num = 8
 level = "info"
 
 [tracing]
-dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
 dir = "/tmp/ceresdbbench"
 
 [analytic.storage.object_store]
