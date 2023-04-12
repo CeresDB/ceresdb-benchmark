@@ -6,21 +6,22 @@ mysql_port = 33107
 
 [runtime]
 compact_thread_num = 1
-default_thread_num = 4
+default_thread_num = 8
 
 [logger]
 level = "info"
 
 [tracing]
 dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
+dir = "/tmp/ceresdbbench"
 
 [analytic.storage.object_store]
 type = "Local"
-data_dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
+data_dir = "/tmp/ceresdbbench"
 
 [analytic.compaction_config]
 max_ongoing_tasks = 8
 
 [analytic.wal]
 type = "RocksDB"
-data_dir = "/home/xikai/code/ceresdb-benchmark/ceresdbbench"
+data_dir = "/tmp/ceresdbbench"
