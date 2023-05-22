@@ -6,7 +6,8 @@ mysql_port = 33107
 
 [runtime]
 compact_thread_num = 1
-default_thread_num = 8
+default_thread_num = 3
+write_thread_num = 3
 
 [logger]
 level = "info"
@@ -14,12 +15,15 @@ level = "info"
 [tracing]
 dir = "/tmp/ceresdbbench"
 
+[analytic]
+max_rows_in_write_queue = 10000
+
 [analytic.storage.object_store]
 type = "Local"
 data_dir = "/tmp/ceresdbbench"
 
 [analytic.compaction_config]
-max_ongoing_tasks = 8
+max_ongoing_tasks = 0
 
 [analytic.wal]
 type = "RocksDB"
