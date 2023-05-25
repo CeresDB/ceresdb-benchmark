@@ -60,3 +60,5 @@ cp -f ${RESULT_FILE} ./records/
 git add ./records
 git commit -m "feat: upload benchmark result of $(date +%Y-%m-%d)"
 git push
+
+bash performance.sh
